@@ -1,6 +1,5 @@
 package Processes.Scheduling_Algorithm.FCFS;
 
-import java.lang.*;
 import java.util.*;
 
 public class Main {

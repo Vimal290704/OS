@@ -1,6 +1,5 @@
 package Processes.Scheduling_Algorithm.Priority_Scheduling;
 
-import java.lang.*;
 import java.util.*;
 
 public class Main {

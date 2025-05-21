@@ -1,6 +1,5 @@
 package Processes.Scheduling_Algorithm.Round_Robin;
 
-import java.lang.*;
 import java.util.*;
 
 public class Main {

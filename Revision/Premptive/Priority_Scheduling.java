@@ -126,6 +126,7 @@ public class Priority_Scheduling {
         return index;
     }
 
+    @SuppressWarnings("rawtypes")
     private static void getPriorityDetails(PriorityQueue<Process> queue) {
         Iterator temp = queue.iterator();
         while (temp.hasNext()) {
