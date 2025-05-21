@@ -1,74 +1,103 @@
-// package Processes.Scheduling_Algorithm.Round_Robin;
+package Processes.Scheduling_Algorithm.Round_Robin;
 
-// import java.util.*;
+import java.lang.*;
+import java.util.*;
 
-// public class Main {
-//     public static void main(String[] args) {
-//         Scanner sc = new Scanner(System.in);
-//         String[] AT = sc.nextLine().split(" ");
-//         int[] arrival = getArr(AT);
-//         String[] BT = sc.nextLine().split(" ");
-//         int[] burst = getArr(BT);
-//         int quantum = sc.nextInt();
-//         boolean[] taken = new boolean[burst.length];
-//         int WT = 0, TAT = 0;
-//         Queue<Process> queue = new LinkedList<>();
-//         int currTime = arrival[getFirst(arrival, taken)];
-//         while (true) {
-//             if (queue.isEmpty()) {
-//                 for (int i = 0; i < arrival.length; i++) {
-//                     if (!taken[i] && currTime <= arrival[i]) {
-//                         taken[i] = true;
-//                         queue.add(new Process(arrival[i], burst[i]));
-//                     }
-//                 }
-//             }
-//             if (queue.isEmpty()) {
-//                 int index = getFirst(arrival, taken);
-//                 currTime = 
-//             }
-//             Process temp = queue.poll();
-//             int rem = temp.remainingTime - quantum;
-//             if (rem >= 0) {
-//                 temp.remainingTime -= quantum;
-//                 queue.add(temp);
-//             } else {
-//                 currTime += temp.remainingTime;
-//             }
-//         }
+public class Main {
+    public static void main(String[] args) {
+        try (Scanner sc = new Scanner(System.in)) {
+            String[] AT = sc.nextLine().split(" ");
+            String[] BT = sc.nextLine().split(" ");
+            int quantumTime = sc.nextInt();
+            int[] arrival = getNumArr(AT);
+            int[] burst = getNumArr(BT);
+            int totalWaitTime = 0, totalTurnAroundTime = 0;
+            int n = arrival.length;
+            if (n != burst.length) {
+                System.out.println("Invalid Input");
+                return;
+            }
+            boolean[] taken = new boolean[n];
+            boolean[] processed = new boolean[n];
+            int currTime = arrival[findnextProcess(arrival, taken)];
+            Queue<Process> queue = new LinkedList<>();
+            while (!isallProcessed(processed)) {
+                for (int i = 0; i < n; i++) {
+                    if (!taken[i] && arrival[i] <= currTime) {
+                        taken[i] = true;
+                        queue.add(new Process(arrival[i], burst[i], i));
+                    }
+                }
+                if (queue.isEmpty()) {
+                    int index = findnextProcess(arrival, taken);
+                    if (index != -1) {
+                        currTime = Math.max(currTime, arrival[index]);
+                    }
+                }
+                Process temp = queue.poll();
+                int executionTime = Math.min(quantumTime, temp.remainingTime);
+                currTime += executionTime;
+                temp.remainingTime -= executionTime;
+                for (int i = 0; i < n; i++) {
+                    if (!taken[i] && arrival[i] <= currTime) {
+                        taken[i] = true;
+                        queue.add(new Process(arrival[i], burst[i], i));
+                    }
+                }
+                if (temp.remainingTime == 0) {
+                    totalTurnAroundTime += (currTime - temp.arrivalTime);
+                    totalWaitTime += (currTime - temp.arrivalTime - temp.burstTime);
+                    processed[temp.index] = true;
+                } else {
+                    queue.add(temp);
+                }
+            }
+            System.out.println(totalWaitTime / n);
+            System.out.println(totalTurnAroundTime / n);
+        }
+    }
 
-//     }
+    static class Process {
+        int arrivalTime;
+        int burstTime;
+        int remainingTime;
+        int index;
 
-//     private static int getFirst(int[] AT, boolean[] taken) {
-//         int minIndex = 0, minArrival = Integer.MAX_VALUE;
-//         for (int i = 0; i < AT.length; i++) {
-//             if (!taken[i]) {
-//                 if (minArrival > AT[i]) {
-//                     minIndex = i;
-//                     minArrival = AT[i];
-//                 }
-//             }
-//         }
-//         return minIndex;
-//     }
+        Process(int arrivalTime, int burstTime, int index) {
+            this.arrivalTime = arrivalTime;
+            this.burstTime = burstTime;
+            this.index = index;
+            this.remainingTime = burstTime;
+        }
+    }
 
-//     static class Process {
-//         int arrivalTime;
-//         int burstTime;
-//         int remainingTime;
+    private static boolean isallProcessed(boolean[] arr) {
+        for (boolean t : arr) {
+            if (!t) {
+                return false;
+            }
+        }
+        return true;
+    }
 
-//         Process(int arrivalTime, int burstTime) {
-//             this.arrivalTime = arrivalTime;
-//             this.burstTime = burstTime;
-//             this.remainingTime = burstTime;
-//         }
-//     }
+    private static int[] getNumArr(String[] str) {
+        int[] temp = new int[str.length];
+        for (int i = 0; i < str.length; i++) {
+            temp[i] = Integer.parseInt(str[i]);
+        }
+        return temp;
+    }
 
-//     private static int[] getArr(String[] arr) {
-//         int temp[] = new int[arr.length];
-//         for (int i = 0; i < arr.length; i++) {
-//             temp[i] = Integer.parseInt(arr[i]);
-//         }
-//         return temp;
-//     }
-// }
+    private static int findnextProcess(int[] arrival, boolean[] taken) {
+        int n = arrival.length, minArrival = Integer.MAX_VALUE, index = -1;
+        for (int i = 0; i < n; i++) {
+            if (!taken[i]) {
+                if (minArrival > arrival[i]) {
+                    minArrival = arrival[i];
+                    index = i;
+                }
+            }
+        }
+        return index;
+    }
+}
