@@ -17,53 +17,54 @@ public class LJF {
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String[] AT = sc.nextLine().split(" ");
-        String[] BT = sc.nextLine().split(" ");
-        int[] arrival = getNumArr(AT);
-        int[] burst = getNumArr(BT);
-        int n = arrival.length;
-        boolean[] processed = new boolean[n];
-        boolean[] taken = new boolean[n];
-        int currTime = 0, totalAroundTime = 0, totalWaitTime = 0;
-        PriorityQueue<Process> queue = new PriorityQueue<>(new SortBySJF());
-        while (true) {
-            for (int i = 0; i < n; i++) {
-                if (!taken[i] && arrival[i] <= currTime) {
-                    queue.add(new Process(i, arrival[i], burst[i]));
-                    taken[i] = true;
+        try (Scanner sc = new Scanner(System.in)) {
+            String[] AT = sc.nextLine().split(" ");
+            String[] BT = sc.nextLine().split(" ");
+            int[] arrival = getNumArr(AT);
+            int[] burst = getNumArr(BT);
+            int n = arrival.length;
+            boolean[] processed = new boolean[n];
+            boolean[] taken = new boolean[n];
+            int currTime = 0, totalAroundTime = 0, totalWaitTime = 0;
+            PriorityQueue<Process> queue = new PriorityQueue<>(new SortBySJF());
+            while (true) {
+                for (int i = 0; i < n; i++) {
+                    if (!taken[i] && arrival[i] <= currTime) {
+                        queue.add(new Process(i, arrival[i], burst[i]));
+                        taken[i] = true;
+                    }
                 }
-            }
-            if (queue.isEmpty()) {
-                int index = findnextProcess(arrival, processed);
-                if (index != -1) {
-                    currTime = arrival[index];
-                    queue.add(new Process(index, arrival[index], burst[index]));
-                    taken[index] = true;
-                } else {
+                if (queue.isEmpty()) {
+                    int index = findnextProcess(arrival, processed);
+                    if (index != -1) {
+                        currTime = arrival[index];
+                        queue.add(new Process(index, arrival[index], burst[index]));
+                        taken[index] = true;
+                    } else {
+                        break;
+                    }
+                }
+                if (!queue.isEmpty()) {
+                    Process temp = queue.poll();
+                    totalWaitTime += currTime - temp.arrivalTime;
+                    currTime += temp.burstTime;
+                    totalAroundTime += (currTime - temp.arrivalTime);
+                    processed[temp.index] = true;
+                }
+                boolean allDone = true;
+                for (int i = 0; i < n; i++) {
+                    if (!processed[i]) {
+                        allDone = false;
+                        break;
+                    }
+                }
+                if (allDone) {
                     break;
                 }
             }
-            if (!queue.isEmpty()) {
-                Process temp = queue.poll();
-                totalWaitTime += currTime - temp.arrivalTime;
-                currTime += temp.burstTime;
-                totalAroundTime += (currTime - temp.arrivalTime);
-                processed[temp.index] = true;
-            }
-            boolean allDone = true;
-            for (int i = 0; i < n; i++) {
-                if (!processed[i]) {
-                    allDone = false;
-                    break;
-                }
-            }
-            if (allDone) {
-                break;
-            }
+            System.out.println(totalAroundTime / n);
+            System.out.println(totalWaitTime / n);
         }
-        System.out.println(totalAroundTime / n);
-        System.out.println(totalWaitTime / n);
     }
 
     private static class SortBySJF implements Comparator<Process> {

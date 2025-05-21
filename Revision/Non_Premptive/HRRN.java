@@ -20,59 +20,60 @@ public class HRRN {
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String[] AT = sc.nextLine().split(" ");
-        String[] BT = sc.nextLine().split(" ");
-        int[] arrival = getNumArr(AT);
-        int[] burst = getNumArr(BT);
-        int n = arrival.length;
-        boolean processed[] = new boolean[n];
-        boolean taken[] = new boolean[n];
-        int index = findFirstProcess(arrival);
-        int currTime = arrival[index];
-        int totalAroundTime = 0, totalWaitTime = 0;
-        currTime += burst[index];
-        processed[index] = true;
-        taken[index] = true;
-        totalAroundTime += currTime - arrival[index];
-        PriorityQueue<Process> queue = new PriorityQueue<>(new SortByResponseRatio(currTime));
-        while (true) {
-            for (int i = 0; i < n; i++) {
-                if (!taken[i] && arrival[i] <= currTime) {
-                    queue.add(new Process(arrival[i], burst[i], i));
-                    taken[i] = true;
+        try (Scanner sc = new Scanner(System.in)) {
+            String[] AT = sc.nextLine().split(" ");
+            String[] BT = sc.nextLine().split(" ");
+            int[] arrival = getNumArr(AT);
+            int[] burst = getNumArr(BT);
+            int n = arrival.length;
+            boolean processed[] = new boolean[n];
+            boolean taken[] = new boolean[n];
+            int index = findFirstProcess(arrival);
+            int currTime = arrival[index];
+            int totalAroundTime = 0, totalWaitTime = 0;
+            currTime += burst[index];
+            processed[index] = true;
+            taken[index] = true;
+            totalAroundTime += currTime - arrival[index];
+            PriorityQueue<Process> queue = new PriorityQueue<>(new SortByResponseRatio(currTime));
+            while (true) {
+                for (int i = 0; i < n; i++) {
+                    if (!taken[i] && arrival[i] <= currTime) {
+                        queue.add(new Process(arrival[i], burst[i], i));
+                        taken[i] = true;
+                    }
                 }
-            }
-            if (queue.isEmpty()) {
-                int minIndex = findNextProcess(arrival, processed);
-                if (index != -1) {
-                    currTime = arrival[minIndex];
-                    queue.add(new Process(arrival[index], burst[index], minIndex));
-                    taken[index] = true;
-                } else {
+                if (queue.isEmpty()) {
+                    int minIndex = findNextProcess(arrival, processed);
+                    if (index != -1) {
+                        currTime = arrival[minIndex];
+                        queue.add(new Process(arrival[index], burst[index], minIndex));
+                        taken[index] = true;
+                    } else {
+                        break;
+                    }
+                }
+                if (!queue.isEmpty()) {
+                    Process temp = queue.poll();
+                    totalWaitTime += currTime - temp.arrivalTime;
+                    currTime += temp.burstTime;
+                    totalAroundTime += currTime - temp.arrivalTime;
+                    processed[temp.index] = true;
+                }
+                boolean allDone = true;
+                for (int i = 0; i < n; i++) {
+                    if (!processed[i]) {
+                        allDone = false;
+                        break;
+                    }
+                }
+                if (allDone) {
                     break;
                 }
             }
-            if (!queue.isEmpty()) {
-                Process temp = queue.poll();
-                totalWaitTime += currTime - temp.arrivalTime;
-                currTime += temp.burstTime;
-                totalAroundTime += currTime - temp.arrivalTime;
-                processed[temp.index] = true;
-            }
-            boolean allDone = true;
-            for (int i = 0; i < n; i++) {
-                if (!processed[i]) {
-                    allDone = false;
-                    break;
-                }
-            }
-            if (allDone) {
-                break;
-            }
+            System.out.println(totalWaitTime / n);
+            System.out.println(totalAroundTime / n);
         }
-        System.out.println(totalWaitTime / n);
-        System.out.println(totalAroundTime / n);
     }
 
     private static int[] getNumArr(String[] arr) {
