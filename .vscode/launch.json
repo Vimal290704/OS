@@ -1,6 +1,48 @@
 {
     "configurations": [
         {
+            "type": "java",
+            "name": "MergeSort",
+            "request": "launch",
+            "mainClass": "L2.Callable.MergeSort",
+            "projectName": "OS_e0ab2146"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "L2.Callable.Main",
+            "projectName": "OS_e0ab2146"
+        },
+        {
+            "type": "java",
+            "name": "Cached",
+            "request": "launch",
+            "mainClass": "L2.Executor.Cached",
+            "projectName": "OS_e0ab2146"
+        },
+        {
+            "type": "java",
+            "name": "Fixed",
+            "request": "launch",
+            "mainClass": "L2.Executor.Fixed",
+            "projectName": "OS_e0ab2146"
+        },
+        {
+            "type": "java",
+            "name": "Single",
+            "request": "launch",
+            "mainClass": "L2.Executor.Single",
+            "projectName": "OS_e0ab2146"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "L2.Main",
+            "projectName": "OS_e0ab2146"
+        },
+        {
             "name": "(Windows) Launch",
             "type": "cppvsdbg",
             "request": "launch",
