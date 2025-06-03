@@ -1,4 +1,4 @@
-package Revision.Premptive;
+package Scheduling_Algorithm.Premptive;
 
 import java.util.*;
 

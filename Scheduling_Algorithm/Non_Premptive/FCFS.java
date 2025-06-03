@@ -1,4 +1,4 @@
-package Revision.Non_Premptive;
+package Scheduling_Algorithm.Non_Premptive;
 // First Come First Serve
 import java.util.*;
 
