@@ -4,52 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="775d6edb-6a17-4b9e-80db-d3ec19d9520e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../OS.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Deadlocks/BankTransferProblem/Account.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Deadlocks/BankTransferProblem/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Deadlocks/BankTransferProblem/Transfer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Deadlocks/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Deadlocks/ReadMe.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/L3/Notes.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/L3/Problem/Adder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/L3/Problem/Count.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/L3/Problem/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/L3/Problem/Subtractor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/L3/Semaphore/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/L3/Semaphore/ReadWrite/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/L3/Semaphore/ReadWrite/NoteBook.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/L3/Semaphore/ReadWrite/Reader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/L3/Semaphore/ReadWrite/Writer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/L3/Semaphore/Reason.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/L3/Solution/Adder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/L3/Solution/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/L3/Solution/Mutex.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/L3/Solution/Subtractor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/L3/Synchronization/Consumer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/L3/Synchronization/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/L3/Synchronization/Producer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/L3/Synchronization/ShirtQueue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/L3/Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Semaphore/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Semaphore/.idea/Semaphore.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Semaphore/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Semaphore/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Semaphore/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Semaphore/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Semaphore/Philospher_problem/Philospher_problem.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Semaphore/Philospher_problem/src/Chopstick.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Semaphore/Philospher_problem/src/EatingCount.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Semaphore/Philospher_problem/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Semaphore/Philospher_problem/src/Philosopher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Semaphore/Philospher_problem/src/Table.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../out/production/OS/Thread.iml" afterDir="false" />
+    <list default="true" id="775d6edb-6a17-4b9e-80db-d3ec19d9520e" name="Changes" comment="Deadlocks and Prevention">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/L2/Callable/MergeSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/L2/Callable/MergeSort.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Thread.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Thread.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,6 +134,19 @@
       <option name="presentableId" value="Default" />
       <updated>1748925962951</updated>
     </task>
+    <task id="LOCAL-00001" summary="Deadlocks and Prevention">
+      <option name="closed" value="true" />
+      <created>1750438493988</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1750438493988</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Deadlocks and Prevention" />
+    <option name="LAST_COMMIT_MESSAGE" value="Deadlocks and Prevention" />
   </component>
 </project>
